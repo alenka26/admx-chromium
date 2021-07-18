@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 <policyDefinitions revision="1.0" schemaVersion="1.0">
-  <!--chrome version: 89.0.4389.114-->
+  <!--chrome version: 91.0.4472.164-->
   <policyNamespaces>
     <target namespace="Google.Policies.ChromeOS" prefix="chrome"/>
     <using namespace="Google.Policies" prefix="Google"/>
@@ -27,6 +27,9 @@
       <parentCategory ref="googlechromeos_recommended"/>
     </category>
     <category displayName="$(string.Arc_group)" name="Arc">
+      <parentCategory ref="googlechromeos"/>
+    </category>
+    <category displayName="$(string.Borealis_group)" name="Borealis">
       <parentCategory ref="googlechromeos"/>
     </category>
     <category displayName="$(string.CertificateManagement_group)" name="CertificateManagement">
@@ -57,6 +60,9 @@
       <parentCategory ref="googlechromeos"/>
     </category>
     <category displayName="$(string.Extensions_group)" name="Extensions">
+      <parentCategory ref="googlechromeos"/>
+    </category>
+    <category displayName="$(string.Gaia_group)" name="Gaia">
       <parentCategory ref="googlechromeos"/>
     </category>
     <category displayName="$(string.GoogleAssistant_group)" name="GoogleAssistant">
@@ -1013,6 +1019,26 @@
         <multiText id="DeviceArcDataSnapshotHours" maxLength="1000000" valueName="DeviceArcDataSnapshotHours"/>
       </elements>
     </policy>
+    <policy class="Machine" displayName="$(string.DeviceBorealisAllowed)" explainText="$(string.DeviceBorealisAllowed_Explain)" key="Software\Policies\Google\ChromeOS" name="DeviceBorealisAllowed" presentation="$(presentation.DeviceBorealisAllowed)" valueName="DeviceBorealisAllowed">
+      <parentCategory ref="Borealis"/>
+      <supportedOn ref="SUPPORTED_WIN7"/>
+      <enabledValue>
+        <decimal value="1"/>
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0"/>
+      </disabledValue>
+    </policy>
+    <policy class="User" displayName="$(string.UserBorealisAllowed)" explainText="$(string.UserBorealisAllowed_Explain)" key="Software\Policies\Google\ChromeOS" name="UserBorealisAllowed" presentation="$(presentation.UserBorealisAllowed)" valueName="UserBorealisAllowed">
+      <parentCategory ref="Borealis"/>
+      <supportedOn ref="SUPPORTED_WIN7"/>
+      <enabledValue>
+        <decimal value="1"/>
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0"/>
+      </disabledValue>
+    </policy>
     <policy class="Machine" displayName="$(string.RequiredClientCertificateForDevice)" explainText="$(string.RequiredClientCertificateForDevice_Explain)" key="Software\Policies\Google\ChromeOS" name="RequiredClientCertificateForDevice" presentation="$(presentation.RequiredClientCertificateForDevice)">
       <parentCategory ref="CertificateManagement"/>
       <supportedOn ref="SUPPORTED_WIN7"/>
@@ -1047,6 +1073,24 @@
           <item displayName="$(string.DefaultCookiesSetting_SessionOnly)">
             <value>
               <decimal value="4"/>
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy class="User" displayName="$(string.DefaultFileHandlingGuardSetting)" explainText="$(string.DefaultFileHandlingGuardSetting_Explain)" key="Software\Policies\Google\ChromeOS" name="DefaultFileHandlingGuardSetting" presentation="$(presentation.DefaultFileHandlingGuardSetting)">
+      <parentCategory ref="ContentSettings"/>
+      <supportedOn ref="SUPPORTED_WIN7"/>
+      <elements>
+        <enum id="DefaultFileHandlingGuardSetting" valueName="DefaultFileHandlingGuardSetting">
+          <item displayName="$(string.DefaultFileHandlingGuardSetting_BlockFileHandling)">
+            <value>
+              <decimal value="2"/>
+            </value>
+          </item>
+          <item displayName="$(string.DefaultFileHandlingGuardSetting_AskFileHandling)">
+            <value>
+              <decimal value="3"/>
             </value>
           </item>
         </enum>
@@ -1304,6 +1348,20 @@
       <supportedOn ref="SUPPORTED_WIN7"/>
       <elements>
         <list id="CookiesSessionOnlyForUrlsDesc" key="Software\Policies\Google\ChromeOS\CookiesSessionOnlyForUrls" valuePrefix=""/>
+      </elements>
+    </policy>
+    <policy class="User" displayName="$(string.FileHandlingAllowedForUrls)" explainText="$(string.FileHandlingAllowedForUrls_Explain)" key="Software\Policies\Google\ChromeOS" name="FileHandlingAllowedForUrls" presentation="$(presentation.FileHandlingAllowedForUrls)">
+      <parentCategory ref="ContentSettings"/>
+      <supportedOn ref="SUPPORTED_WIN7"/>
+      <elements>
+        <list id="FileHandlingAllowedForUrlsDesc" key="Software\Policies\Google\ChromeOS\FileHandlingAllowedForUrls" valuePrefix=""/>
+      </elements>
+    </policy>
+    <policy class="User" displayName="$(string.FileHandlingBlockedForUrls)" explainText="$(string.FileHandlingBlockedForUrls_Explain)" key="Software\Policies\Google\ChromeOS" name="FileHandlingBlockedForUrls" presentation="$(presentation.FileHandlingBlockedForUrls)">
+      <parentCategory ref="ContentSettings"/>
+      <supportedOn ref="SUPPORTED_WIN7"/>
+      <elements>
+        <list id="FileHandlingBlockedForUrlsDesc" key="Software\Policies\Google\ChromeOS\FileHandlingBlockedForUrls" valuePrefix=""/>
       </elements>
     </policy>
     <policy class="User" displayName="$(string.FileSystemReadAskForUrls)" explainText="$(string.FileSystemReadAskForUrls_Explain)" key="Software\Policies\Google\ChromeOS" name="FileSystemReadAskForUrls" presentation="$(presentation.FileSystemReadAskForUrls)">
@@ -2515,6 +2573,13 @@
       <elements>
         <text id="ExtensionSettings_Legacy" maxLength="1000000" valueName="ExtensionSettings"/>
         <multiText id="ExtensionSettings" maxLength="1000000" valueName="ExtensionSettings"/>
+      </elements>
+    </policy>
+    <policy class="User" displayName="$(string.GaiaOfflineSigninTimeLimitDays)" explainText="$(string.GaiaOfflineSigninTimeLimitDays_Explain)" key="Software\Policies\Google\ChromeOS" name="GaiaOfflineSigninTimeLimitDays" presentation="$(presentation.GaiaOfflineSigninTimeLimitDays)">
+      <parentCategory ref="Gaia"/>
+      <supportedOn ref="SUPPORTED_WIN7"/>
+      <elements>
+        <decimal id="GaiaOfflineSigninTimeLimitDays" maxValue="365" minValue="0" valueName="GaiaOfflineSigninTimeLimitDays"/>
       </elements>
     </policy>
     <policy class="User" displayName="$(string.VoiceInteractionContextEnabled)" explainText="$(string.VoiceInteractionContextEnabled_Explain)" key="Software\Policies\Google\ChromeOS" name="VoiceInteractionContextEnabled" presentation="$(presentation.VoiceInteractionContextEnabled)" valueName="VoiceInteractionContextEnabled">
@@ -4277,6 +4342,16 @@
         <decimal value="0"/>
       </disabledValue>
     </policy>
+    <policy class="User" displayName="$(string.RunAllFlashInAllowMode)" explainText="$(string.RunAllFlashInAllowMode_Explain)" key="Software\Policies\Google\ChromeOS" name="RunAllFlashInAllowMode" presentation="$(presentation.RunAllFlashInAllowMode)" valueName="RunAllFlashInAllowMode">
+      <parentCategory ref="RemovedPolicies"/>
+      <supportedOn ref="SUPPORTED_WIN7"/>
+      <enabledValue>
+        <decimal value="1"/>
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0"/>
+      </disabledValue>
+    </policy>
     <policy class="User" displayName="$(string.HideWebStorePromo)" explainText="$(string.HideWebStorePromo_Explain)" key="Software\Policies\Google\ChromeOS" name="HideWebStorePromo" presentation="$(presentation.HideWebStorePromo)" valueName="HideWebStorePromo">
       <parentCategory ref="RemovedPolicies"/>
       <supportedOn ref="SUPPORTED_WIN7"/>
@@ -4957,13 +5032,6 @@
         <decimal value="0"/>
       </disabledValue>
     </policy>
-    <policy class="User" displayName="$(string.NewTabPageLocation)" explainText="$(string.NewTabPageLocation_Explain)" key="Software\Policies\Google\ChromeOS\Recommended" name="NewTabPageLocation_recommended" presentation="$(presentation.NewTabPageLocation)">
-      <parentCategory ref="Startup_recommended"/>
-      <supportedOn ref="SUPPORTED_WIN7"/>
-      <elements>
-        <text id="NewTabPageLocation" maxLength="1000000" valueName="NewTabPageLocation"/>
-      </elements>
-    </policy>
     <policy class="User" displayName="$(string.RestoreOnStartup)" explainText="$(string.RestoreOnStartup_Explain)" key="Software\Policies\Google\ChromeOS\Recommended" name="RestoreOnStartup_recommended" presentation="$(presentation.RestoreOnStartup)">
       <parentCategory ref="Startup_recommended"/>
       <supportedOn ref="SUPPORTED_WIN7"/>
@@ -5368,6 +5436,16 @@
         </enum>
       </elements>
     </policy>
+    <policy class="User" displayName="$(string.CECPQ2Enabled)" explainText="$(string.CECPQ2Enabled_Explain)" key="Software\Policies\Google\ChromeOS" name="CECPQ2Enabled" presentation="$(presentation.CECPQ2Enabled)" valueName="CECPQ2Enabled">
+      <parentCategory ref="googlechromeos"/>
+      <supportedOn ref="SUPPORTED_WIN7"/>
+      <enabledValue>
+        <decimal value="1"/>
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0"/>
+      </disabledValue>
+    </policy>
     <policy class="User" displayName="$(string.CaptivePortalAuthenticationIgnoresProxy)" explainText="$(string.CaptivePortalAuthenticationIgnoresProxy_Explain)" key="Software\Policies\Google\ChromeOS" name="CaptivePortalAuthenticationIgnoresProxy" presentation="$(presentation.CaptivePortalAuthenticationIgnoresProxy)" valueName="CaptivePortalAuthenticationIgnoresProxy">
       <parentCategory ref="googlechromeos"/>
       <supportedOn ref="SUPPORTED_WIN7"/>
@@ -5542,6 +5620,23 @@
         </enum>
       </elements>
     </policy>
+    <policy class="Machine" displayName="$(string.DeviceAllowMGSToStoreDisplayProperties)" explainText="$(string.DeviceAllowMGSToStoreDisplayProperties_Explain)" key="Software\Policies\Google\ChromeOS" name="DeviceAllowMGSToStoreDisplayProperties" presentation="$(presentation.DeviceAllowMGSToStoreDisplayProperties)" valueName="DeviceAllowMGSToStoreDisplayProperties">
+      <parentCategory ref="googlechromeos"/>
+      <supportedOn ref="SUPPORTED_WIN7"/>
+      <enabledValue>
+        <decimal value="1"/>
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0"/>
+      </disabledValue>
+    </policy>
+    <policy class="Machine" displayName="$(string.DeviceAllowedBluetoothServices)" explainText="$(string.DeviceAllowedBluetoothServices_Explain)" key="Software\Policies\Google\ChromeOS" name="DeviceAllowedBluetoothServices" presentation="$(presentation.DeviceAllowedBluetoothServices)">
+      <parentCategory ref="googlechromeos"/>
+      <supportedOn ref="SUPPORTED_WIN7"/>
+      <elements>
+        <list id="DeviceAllowedBluetoothServicesDesc" key="Software\Policies\Google\ChromeOS\DeviceAllowedBluetoothServices" valuePrefix=""/>
+      </elements>
+    </policy>
     <policy class="Machine" displayName="$(string.DeviceChromeVariations)" explainText="$(string.DeviceChromeVariations_Explain)" key="Software\Policies\Google\ChromeOS" name="DeviceChromeVariations" presentation="$(presentation.DeviceChromeVariations)">
       <parentCategory ref="googlechromeos"/>
       <supportedOn ref="SUPPORTED_WIN7"/>
@@ -5593,6 +5688,16 @@
         <multiText id="DeviceLoginScreenWebUsbAllowDevicesForUrls" maxLength="1000000" valueName="DeviceLoginScreenWebUsbAllowDevicesForUrls"/>
       </elements>
     </policy>
+    <policy class="Machine" displayName="$(string.DevicePciPeripheralDataAccessEnabled)" explainText="$(string.DevicePciPeripheralDataAccessEnabled_Explain)" key="Software\Policies\Google\ChromeOS" name="DevicePciPeripheralDataAccessEnabled" presentation="$(presentation.DevicePciPeripheralDataAccessEnabled)" valueName="DevicePciPeripheralDataAccessEnabled">
+      <parentCategory ref="googlechromeos"/>
+      <supportedOn ref="SUPPORTED_WIN7"/>
+      <enabledValue>
+        <decimal value="1"/>
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0"/>
+      </disabledValue>
+    </policy>
     <policy class="Machine" displayName="$(string.DevicePowerwashAllowed)" explainText="$(string.DevicePowerwashAllowed_Explain)" key="Software\Policies\Google\ChromeOS" name="DevicePowerwashAllowed" presentation="$(presentation.DevicePowerwashAllowed)" valueName="DevicePowerwashAllowed">
       <parentCategory ref="googlechromeos"/>
       <supportedOn ref="SUPPORTED_WIN7"/>
@@ -5637,6 +5742,16 @@
       <elements>
         <text id="DeviceReleaseLtsTag" maxLength="1000000" valueName="DeviceReleaseLtsTag"/>
       </elements>
+    </policy>
+    <policy class="Machine" displayName="$(string.DeviceSystemWideTracingEnabled)" explainText="$(string.DeviceSystemWideTracingEnabled_Explain)" key="Software\Policies\Google\ChromeOS" name="DeviceSystemWideTracingEnabled" presentation="$(presentation.DeviceSystemWideTracingEnabled)" valueName="DeviceSystemWideTracingEnabled">
+      <parentCategory ref="googlechromeos"/>
+      <supportedOn ref="SUPPORTED_WIN7"/>
+      <enabledValue>
+        <decimal value="1"/>
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0"/>
+      </disabledValue>
     </policy>
     <policy class="User" displayName="$(string.Disable3DAPIs)" explainText="$(string.Disable3DAPIs_Explain)" key="Software\Policies\Google\ChromeOS" name="Disable3DAPIs" presentation="$(presentation.Disable3DAPIs)" valueName="Disable3DAPIs">
       <parentCategory ref="googlechromeos"/>
@@ -5855,6 +5970,13 @@
         <decimal value="0"/>
       </disabledValue>
     </policy>
+    <policy class="User" displayName="$(string.ExplicitlyAllowedNetworkPorts)" explainText="$(string.ExplicitlyAllowedNetworkPorts_Explain)" key="Software\Policies\Google\ChromeOS" name="ExplicitlyAllowedNetworkPorts" presentation="$(presentation.ExplicitlyAllowedNetworkPorts)">
+      <parentCategory ref="googlechromeos"/>
+      <supportedOn ref="SUPPORTED_WIN7"/>
+      <elements>
+        <list id="ExplicitlyAllowedNetworkPortsDesc" key="Software\Policies\Google\ChromeOS\ExplicitlyAllowedNetworkPorts" valuePrefix=""/>
+      </elements>
+    </policy>
     <policy class="User" displayName="$(string.ExternalStorageDisabled)" explainText="$(string.ExternalStorageDisabled_Explain)" key="Software\Policies\Google\ChromeOS" name="ExternalStorageDisabled" presentation="$(presentation.ExternalStorageDisabled)" valueName="ExternalStorageDisabled">
       <parentCategory ref="googlechromeos"/>
       <supportedOn ref="SUPPORTED_WIN7"/>
@@ -5953,6 +6075,24 @@
       <supportedOn ref="SUPPORTED_WIN7"/>
       <elements>
         <list id="HSTSPolicyBypassListDesc" key="Software\Policies\Google\ChromeOS\HSTSPolicyBypassList" valuePrefix=""/>
+      </elements>
+    </policy>
+    <policy class="User" displayName="$(string.HeadlessMode)" explainText="$(string.HeadlessMode_Explain)" key="Software\Policies\Google\ChromeOS" name="HeadlessMode" presentation="$(presentation.HeadlessMode)">
+      <parentCategory ref="googlechromeos"/>
+      <supportedOn ref="SUPPORTED_WIN7"/>
+      <elements>
+        <enum id="HeadlessMode" valueName="HeadlessMode">
+          <item displayName="$(string.HeadlessMode_Enabled)">
+            <value>
+              <decimal value="1"/>
+            </value>
+          </item>
+          <item displayName="$(string.HeadlessMode_Disabled)">
+            <value>
+              <decimal value="2"/>
+            </value>
+          </item>
+        </enum>
       </elements>
     </policy>
     <policy class="User" displayName="$(string.HideWebStoreIcon)" explainText="$(string.HideWebStoreIcon_Explain)" key="Software\Policies\Google\ChromeOS" name="HideWebStoreIcon" presentation="$(presentation.HideWebStoreIcon)" valueName="HideWebStoreIcon">
@@ -6071,6 +6211,16 @@
         <decimal value="0"/>
       </disabledValue>
     </policy>
+    <policy class="User" displayName="$(string.LacrosSecondaryProfilesAllowed)" explainText="$(string.LacrosSecondaryProfilesAllowed_Explain)" key="Software\Policies\Google\ChromeOS" name="LacrosSecondaryProfilesAllowed" presentation="$(presentation.LacrosSecondaryProfilesAllowed)" valueName="LacrosSecondaryProfilesAllowed">
+      <parentCategory ref="googlechromeos"/>
+      <supportedOn ref="SUPPORTED_WIN7"/>
+      <enabledValue>
+        <decimal value="1"/>
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0"/>
+      </disabledValue>
+    </policy>
     <policy class="User" displayName="$(string.LockScreenMediaPlaybackEnabled)" explainText="$(string.LockScreenMediaPlaybackEnabled_Explain)" key="Software\Policies\Google\ChromeOS" name="LockScreenMediaPlaybackEnabled" presentation="$(presentation.LockScreenMediaPlaybackEnabled)" valueName="LockScreenMediaPlaybackEnabled">
       <parentCategory ref="googlechromeos"/>
       <supportedOn ref="SUPPORTED_WIN7"/>
@@ -6171,6 +6321,16 @@
         <decimal value="0"/>
       </disabledValue>
     </policy>
+    <policy class="User" displayName="$(string.NearbyShareAllowed)" explainText="$(string.NearbyShareAllowed_Explain)" key="Software\Policies\Google\ChromeOS" name="NearbyShareAllowed" presentation="$(presentation.NearbyShareAllowed)" valueName="NearbyShareAllowed">
+      <parentCategory ref="googlechromeos"/>
+      <supportedOn ref="SUPPORTED_WIN7"/>
+      <enabledValue>
+        <decimal value="1"/>
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0"/>
+      </disabledValue>
+    </policy>
     <policy class="User" displayName="$(string.NetworkPredictionOptions)" explainText="$(string.NetworkPredictionOptions_Explain)" key="Software\Policies\Google\ChromeOS" name="NetworkPredictionOptions" presentation="$(presentation.NetworkPredictionOptions)">
       <parentCategory ref="googlechromeos"/>
       <supportedOn ref="SUPPORTED_WIN7"/>
@@ -6240,6 +6400,16 @@
       </elements>
     </policy>
     <policy class="User" displayName="$(string.PaymentMethodQueryEnabled)" explainText="$(string.PaymentMethodQueryEnabled_Explain)" key="Software\Policies\Google\ChromeOS" name="PaymentMethodQueryEnabled" presentation="$(presentation.PaymentMethodQueryEnabled)" valueName="PaymentMethodQueryEnabled">
+      <parentCategory ref="googlechromeos"/>
+      <supportedOn ref="SUPPORTED_WIN7"/>
+      <enabledValue>
+        <decimal value="1"/>
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0"/>
+      </disabledValue>
+    </policy>
+    <policy class="User" displayName="$(string.PdfAnnotationsEnabled)" explainText="$(string.PdfAnnotationsEnabled_Explain)" key="Software\Policies\Google\ChromeOS" name="PdfAnnotationsEnabled" presentation="$(presentation.PdfAnnotationsEnabled)" valueName="PdfAnnotationsEnabled">
       <parentCategory ref="googlechromeos"/>
       <supportedOn ref="SUPPORTED_WIN7"/>
       <enabledValue>
@@ -6414,16 +6584,6 @@
         <decimal value="0"/>
       </disabledValue>
     </policy>
-    <policy class="User" displayName="$(string.RunAllFlashInAllowMode)" explainText="$(string.RunAllFlashInAllowMode_Explain)" key="Software\Policies\Google\ChromeOS" name="RunAllFlashInAllowMode" presentation="$(presentation.RunAllFlashInAllowMode)" valueName="RunAllFlashInAllowMode">
-      <parentCategory ref="googlechromeos"/>
-      <supportedOn ref="SUPPORTED_WIN7"/>
-      <enabledValue>
-        <decimal value="1"/>
-      </enabledValue>
-      <disabledValue>
-        <decimal value="0"/>
-      </disabledValue>
-    </policy>
     <policy class="User" displayName="$(string.SSLErrorOverrideAllowed)" explainText="$(string.SSLErrorOverrideAllowed_Explain)" key="Software\Policies\Google\ChromeOS" name="SSLErrorOverrideAllowed" presentation="$(presentation.SSLErrorOverrideAllowed)" valueName="SSLErrorOverrideAllowed">
       <parentCategory ref="googlechromeos"/>
       <supportedOn ref="SUPPORTED_WIN7"/>
@@ -6433,6 +6593,13 @@
       <disabledValue>
         <decimal value="0"/>
       </disabledValue>
+    </policy>
+    <policy class="User" displayName="$(string.SSLErrorOverrideAllowedForOrigins)" explainText="$(string.SSLErrorOverrideAllowedForOrigins_Explain)" key="Software\Policies\Google\ChromeOS" name="SSLErrorOverrideAllowedForOrigins" presentation="$(presentation.SSLErrorOverrideAllowedForOrigins)">
+      <parentCategory ref="googlechromeos"/>
+      <supportedOn ref="SUPPORTED_WIN7"/>
+      <elements>
+        <list id="SSLErrorOverrideAllowedForOriginsDesc" key="Software\Policies\Google\ChromeOS\SSLErrorOverrideAllowedForOrigins" valuePrefix=""/>
+      </elements>
     </policy>
     <policy class="User" displayName="$(string.SSLVersionMin)" explainText="$(string.SSLVersionMin_Explain)" key="Software\Policies\Google\ChromeOS" name="SSLVersionMin" presentation="$(presentation.SSLVersionMin)">
       <parentCategory ref="googlechromeos"/>
@@ -6578,6 +6745,36 @@
         <list id="SecurityKeyPermitAttestationDesc" key="Software\Policies\Google\ChromeOS\SecurityKeyPermitAttestation" valuePrefix=""/>
       </elements>
     </policy>
+    <policy class="User" displayName="$(string.SecurityTokenSessionBehavior)" explainText="$(string.SecurityTokenSessionBehavior_Explain)" key="Software\Policies\Google\ChromeOS" name="SecurityTokenSessionBehavior" presentation="$(presentation.SecurityTokenSessionBehavior)">
+      <parentCategory ref="googlechromeos"/>
+      <supportedOn ref="SUPPORTED_WIN7"/>
+      <elements>
+        <enum id="SecurityTokenSessionBehavior" valueName="SecurityTokenSessionBehavior">
+          <item displayName="$(string.SecurityTokenSessionBehavior_ignore)">
+            <value>
+              <string>IGNORE</string>
+            </value>
+          </item>
+          <item displayName="$(string.SecurityTokenSessionBehavior_logout)">
+            <value>
+              <string>LOGOUT</string>
+            </value>
+          </item>
+          <item displayName="$(string.SecurityTokenSessionBehavior_lock)">
+            <value>
+              <string>LOCK</string>
+            </value>
+          </item>
+        </enum>
+      </elements>
+    </policy>
+    <policy class="User" displayName="$(string.SecurityTokenSessionNotificationSeconds)" explainText="$(string.SecurityTokenSessionNotificationSeconds_Explain)" key="Software\Policies\Google\ChromeOS" name="SecurityTokenSessionNotificationSeconds" presentation="$(presentation.SecurityTokenSessionNotificationSeconds)">
+      <parentCategory ref="googlechromeos"/>
+      <supportedOn ref="SUPPORTED_WIN7"/>
+      <elements>
+        <decimal id="SecurityTokenSessionNotificationSeconds" maxValue="9999" minValue="0" valueName="SecurityTokenSessionNotificationSeconds"/>
+      </elements>
+    </policy>
     <policy class="User" displayName="$(string.SessionLengthLimit)" explainText="$(string.SessionLengthLimit_Explain)" key="Software\Policies\Google\ChromeOS" name="SessionLengthLimit" presentation="$(presentation.SessionLengthLimit)">
       <parentCategory ref="googlechromeos"/>
       <supportedOn ref="SUPPORTED_WIN7"/>
@@ -6598,6 +6795,16 @@
       <elements>
         <list id="SessionLocalesDesc" key="Software\Policies\Google\ChromeOS\Recommended\SessionLocales" valuePrefix=""/>
       </elements>
+    </policy>
+    <policy class="User" displayName="$(string.SharedArrayBufferUnrestrictedAccessAllowed)" explainText="$(string.SharedArrayBufferUnrestrictedAccessAllowed_Explain)" key="Software\Policies\Google\ChromeOS" name="SharedArrayBufferUnrestrictedAccessAllowed" presentation="$(presentation.SharedArrayBufferUnrestrictedAccessAllowed)" valueName="SharedArrayBufferUnrestrictedAccessAllowed">
+      <parentCategory ref="googlechromeos"/>
+      <supportedOn ref="SUPPORTED_WIN7"/>
+      <enabledValue>
+        <decimal value="1"/>
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0"/>
+      </disabledValue>
     </policy>
     <policy class="User" displayName="$(string.SharedClipboardEnabled)" explainText="$(string.SharedClipboardEnabled_Explain)" key="Software\Policies\Google\ChromeOS" name="SharedClipboardEnabled" presentation="$(presentation.SharedClipboardEnabled)" valueName="SharedClipboardEnabled">
       <parentCategory ref="googlechromeos"/>
@@ -6815,6 +7022,16 @@
         <decimal value="0"/>
       </disabledValue>
     </policy>
+    <policy class="User" displayName="$(string.SuppressDifferentOriginSubframeDialogs)" explainText="$(string.SuppressDifferentOriginSubframeDialogs_Explain)" key="Software\Policies\Google\ChromeOS" name="SuppressDifferentOriginSubframeDialogs" presentation="$(presentation.SuppressDifferentOriginSubframeDialogs)" valueName="SuppressDifferentOriginSubframeDialogs">
+      <parentCategory ref="googlechromeos"/>
+      <supportedOn ref="SUPPORTED_WIN7"/>
+      <enabledValue>
+        <decimal value="1"/>
+      </enabledValue>
+      <disabledValue>
+        <decimal value="0"/>
+      </disabledValue>
+    </policy>
     <policy class="User" displayName="$(string.SuppressUnsupportedOSWarning)" explainText="$(string.SuppressUnsupportedOSWarning_Explain)" key="Software\Policies\Google\ChromeOS" name="SuppressUnsupportedOSWarning" presentation="$(presentation.SuppressUnsupportedOSWarning)" valueName="SuppressUnsupportedOSWarning">
       <parentCategory ref="googlechromeos"/>
       <supportedOn ref="SUPPORTED_WIN7"/>
@@ -6847,6 +7064,24 @@
       <supportedOn ref="SUPPORTED_WIN7"/>
       <elements>
         <list id="SystemFeaturesDisableListDesc" key="Software\Policies\Google\ChromeOS\SystemFeaturesDisableList" valuePrefix=""/>
+      </elements>
+    </policy>
+    <policy class="User" displayName="$(string.SystemFeaturesDisableMode)" explainText="$(string.SystemFeaturesDisableMode_Explain)" key="Software\Policies\Google\ChromeOS" name="SystemFeaturesDisableMode" presentation="$(presentation.SystemFeaturesDisableMode)">
+      <parentCategory ref="googlechromeos"/>
+      <supportedOn ref="SUPPORTED_WIN7"/>
+      <elements>
+        <enum id="SystemFeaturesDisableMode" valueName="SystemFeaturesDisableMode">
+          <item displayName="$(string.SystemFeaturesDisableMode_blocked)">
+            <value>
+              <string>blocked</string>
+            </value>
+          </item>
+          <item displayName="$(string.SystemFeaturesDisableMode_hidden)">
+            <value>
+              <string>hidden</string>
+            </value>
+          </item>
+        </enum>
       </elements>
     </policy>
     <policy class="Machine" displayName="$(string.SystemProxySettings)" explainText="$(string.SystemProxySettings_Explain)" key="Software\Policies\Google\ChromeOS" name="SystemProxySettings" presentation="$(presentation.SystemProxySettings)">
@@ -7065,6 +7300,34 @@
       <disabledValue>
         <decimal value="0"/>
       </disabledValue>
+    </policy>
+    <policy class="User" displayName="$(string.WebRtcIPHandling)" explainText="$(string.WebRtcIPHandling_Explain)" key="Software\Policies\Google\ChromeOS" name="WebRtcIPHandling" presentation="$(presentation.WebRtcIPHandling)">
+      <parentCategory ref="googlechromeos"/>
+      <supportedOn ref="SUPPORTED_WIN7"/>
+      <elements>
+        <enum id="WebRtcIPHandling" valueName="WebRtcIPHandling">
+          <item displayName="$(string.WebRtcIPHandling_default)">
+            <value>
+              <string>default</string>
+            </value>
+          </item>
+          <item displayName="$(string.WebRtcIPHandling_default_public_and_private_interfaces)">
+            <value>
+              <string>default_public_and_private_interfaces</string>
+            </value>
+          </item>
+          <item displayName="$(string.WebRtcIPHandling_default_public_interface_only)">
+            <value>
+              <string>default_public_interface_only</string>
+            </value>
+          </item>
+          <item displayName="$(string.WebRtcIPHandling_disable_non_proxied_udp)">
+            <value>
+              <string>disable_non_proxied_udp</string>
+            </value>
+          </item>
+        </enum>
+      </elements>
     </policy>
     <policy class="User" displayName="$(string.WebRtcLocalIpsAllowedUrls)" explainText="$(string.WebRtcLocalIpsAllowedUrls_Explain)" key="Software\Policies\Google\ChromeOS" name="WebRtcLocalIpsAllowedUrls" presentation="$(presentation.WebRtcLocalIpsAllowedUrls)">
       <parentCategory ref="googlechromeos"/>
